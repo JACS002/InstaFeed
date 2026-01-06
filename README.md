@@ -53,7 +53,6 @@ A modern, full-stack social media application built with FastAPI, React, TypeScr
 
 ```bash
 git clone https://github.com/JACS002/PostsApi
-cd "Intro FastApi"
 ```
 
 ### 2. Set up environment variables
