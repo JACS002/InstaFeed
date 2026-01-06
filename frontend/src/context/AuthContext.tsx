@@ -4,6 +4,7 @@ interface AuthContextType {
   token: string | null;
   loginUser: (token: string) => void;
   logout: () => void;
+  isAuthenticated: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -23,8 +24,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setToken(null);
   };
 
+  // Calculamos isAuthenticated basado en si hay token
+  const isAuthenticated = !!token;
+
   return (
-    <AuthContext.Provider value={{ token, loginUser, logout }}>
+    <AuthContext.Provider value={{ token, loginUser, logout, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,10 +1,10 @@
+version: "3.9"
+
 services:
   postgres:
     image: postgres:16
     container_name: fastapi_postgres
     restart: always
-    env_file:
-      - .env
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -15,18 +15,27 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   api:
-    build: .
+    build: ./backend
     container_name: fastapi_api
     restart: always
     command: uvicorn app.app:app --host 0.0.0.0 --port 8000 --reload
     env_file:
       - .env
     volumes:
-      - .:/app
+      - ./backend:/app
     ports:
       - "8000:8000"
     depends_on:
       - postgres
+
+  frontend:
+    build: ./frontend
+    container_name: react_frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
 
 volumes:
   postgres_data:
