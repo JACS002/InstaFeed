@@ -52,7 +52,7 @@ A modern, full-stack social media application built with FastAPI, React, TypeScr
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/JACS002/PostsApi
+git clone https://github.com/JACS002/InstaFeed
 ```
 
 ### 2. Set up environment variables
